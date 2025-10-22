@@ -81,7 +81,9 @@ services:
     env_file: env/redis-cache.env
     volumes:
       - netbox-redis-cache-data:/data
-
+networks:
+  "netBox-net":
+    driver: bridge
 volumes:
   netbox-media-files:
     driver: local
