@@ -20,7 +20,7 @@ services:
       - netbox-reports-files:/opt/netbox/netbox/reports:rw
       - netbox-scripts-files:/opt/netbox/netbox/scripts:rw
     networks:
-      - bridge
+      - "netBox-net"
   netbox-worker:
     <<: *netbox
     depends_on:
@@ -36,7 +36,7 @@ services:
       timeout: 3s
       interval: 15s
     networks:
-      - bridge
+      - "netBox-net"
 
   # postgres
   postgres:
@@ -49,7 +49,7 @@ services:
       retries: 5
     env_file: env/postgres.env
     networks:
-      - bridge
+      - "netBox-net"
     volumes:
       - netbox-postgres-data:/var/lib/postgresql/data
 
@@ -68,7 +68,7 @@ services:
       retries: 5
     env_file: env/redis.env
     networks:
-      - bridge
+      - "netBox-net"
     volumes:
       - netbox-redis-data:/data
   redis-cache:
